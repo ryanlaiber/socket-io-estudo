@@ -14,9 +14,18 @@ app.use(express.static(__dirname + '/public'))
 
 require('./sockets/ping')(io);
 require('./sockets/chat')(io);
+require('./sockets/rooms')(io);
 
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public');
+});
+
+app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/public/chat.html');
+});
+
+app.get('/entrar', (req, res) => {
+  res.sendFile(__dirname + '/public/entrar.html');
 });
 
 http.listen(3000, () => {
